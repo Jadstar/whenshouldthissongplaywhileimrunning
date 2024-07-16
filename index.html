@@ -14,7 +14,7 @@
 <!--[if lt IE 9]> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <![endif]-->
-<title>When Should This Song Play when Running </title>
+<title>Runnify - Listen in the Moment </title>
 <meta name="description" content="">
 <meta name="author" content="Jaden Kostogiannis">
 <!--[if lt IE 9]>
@@ -34,7 +34,9 @@
 <link href="font/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
-<body> 	
+<body> 
+<script src="spotify.js"></script>
+
  <nav id="mainNav">
  <div id="menuToggle"><i class="fa fa-bars"></i></div>
 	<ul class="menuLinks">
@@ -54,6 +56,9 @@
 <div id="logo" class="animated fadeInDown"><a href="#home"><img src="images/logo.png" alt="logo"></a></div>
       <div class="hero-text animated fadeInDownBig">
         <h1 class="responsive-headline" style="font-size: 40px;">Search for a song to see when it should be played when running.</h1>
+        <input type="text" id="search-input" placeholder="Search for a track, artist, album, or playlist">
+       <button id="search-button">Search</button>
+
          <div id="header-btn">
 						<a class="btn btn-secondary scrollTo-about">Learn More</a>
 						<a class="btn btn-primary scrollTo-download">Download Now</a>
