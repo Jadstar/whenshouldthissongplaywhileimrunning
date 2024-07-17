@@ -70,6 +70,7 @@ function displaySearchResults(results) {
 async function main() {
     try {
         const token = await fetchAccessToken();
+        console.log(`token: ${token}`);
         const searchButton = document.getElementById('search-button');
         searchButton.addEventListener('click', async () => {
             const query = document.getElementById('search-input').value;
