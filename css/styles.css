@@ -13,6 +13,148 @@ License: Free to use for personal and commercial, but you need to place back lin
 	font-family: 'Open Sans', sans-serif;
 }
 
+
+*{
+	box-sizing: border-box;
+  }
+  
+  body{
+	margin: 0px;
+	padding: 0px;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #130f40;
+	font-family: 'Lato' !important;
+  }
+  h1 {
+	font-size: 60px;
+	font-family: 'Helvetica', Arial, sans-serif;
+	color: #ff6347; /* Coral color as an example */
+	letter-spacing: 2px;
+  }
+  .search-box{
+	height: fit-content;
+	position: relative;
+  }
+  .main-title {
+	text-align: center;
+	max-width: 80%;
+	padding: 10px;
+	
+  }
+  .input-search{
+	height: fit-content;
+	width: 300px;
+	border-style: none;
+	padding: 10px;
+	font-size: 18px;
+	letter-spacing: 2px;
+	outline: none;
+	transition: all .5s ease-in-out;
+	background-color: transparent;
+	padding-right: 40px;
+	color:#fff;
+	border-bottom:1px solid rgba(255,255,255,.5);
+  }
+  input-search:focus{
+	width: 300px;
+	border-radius: 0px;
+	background-color: transparent;
+	border-bottom:1px solid rgba(255,255,255,.5);
+  
+  }
+  /*  footer   */
+  footer {
+	  background-color: #222;
+	  color: #fff;
+	  font-size: 14px;
+	  bottom: 0;
+	  position: fixed;
+	  left: 0;
+	  right: 0;
+	  text-align: center;
+	  z-index: 999;
+  }
+  
+  footer p {
+	  margin: 10px 0;
+	  font-family:  'Lucida Sans Regular', 'Lucida  Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
+  }
+  footer .fa-heart{
+	  color: red;
+  }
+  footer .fa-dev{
+	  color: #fff;
+  }
+  footer .fa-twitter-square{
+	color:#1da0f1;
+  }
+  footer .fa-instagram{
+	color: #f0007c;
+  }
+  footer .fa-linkedin{
+	color:#0073b1;
+  }
+  footer .fa-codepen{
+	color:#fff
+  }
+  footer a {
+	  color: #3c97bf;
+	  text-decoration: none;
+	margin-right:5px;
+  }
+  .youtubeBtn{
+	  position: fixed;
+	  left: 50%;
+	transform:translatex(-50%);
+	  bottom: 45px;
+	  cursor: pointer;
+	  transition: all .3s;
+	  vertical-align: middle;
+	  text-align: center;
+	  display: inline-block;
+  }
+  .youtubeBtn i{
+	 font-size:20px;
+	float:left;
+  }
+  .youtubeBtn a{
+	  color:#ff0000;
+	  animation: youtubeAnim 1000ms linear infinite;
+	float:right;
+  }
+  .youtubeBtn a:hover{
+	color:#c9110f;
+	transition:all .3s ease-in-out;
+	text-shadow: none;
+  }
+  .youtubeBtn i:active{
+	transform:scale(.9);
+	transition:all .3s ease-in-out;
+  }
+  .youtubeBtn span{
+	  font-weight: normal;
+	  color: #fff;
+	  display: block;
+	  font-size: 12px;
+	  float: right;
+	  line-height: 20px;
+	  padding-left: 5px;
+	
+  }
+  
+  @keyframes youtubeAnim{
+	0%,100%{
+	  color:#c9110f;
+	}
+	50%{
+	  color:#ff0000;
+	}
+  }
+  /* footer  */
 body {
 	height: 100%;
 	font-family: 'Open Sans', sans-serif;
