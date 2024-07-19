@@ -12,6 +12,7 @@ License: Free to use for personal and commercial, but you need to place back lin
 	padding: 0;
 	font-family: 'Open Sans', sans-serif;
 }
+
 body {
 	height: 100%;
 	font-family: 'Open Sans', sans-serif;
@@ -42,6 +43,7 @@ p {
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'PT Sans Narrow', sans-serif;
 }
+
 .fitImage {
 	max-width: 100%;
 	vertical-align: middle;
@@ -290,7 +292,7 @@ color:#888;
 }
 .navbar-inverse .navbar-toggle .icon-bar {
 /*background-color: #6D508D;*/
-;
+
 }
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
 	background: #6D508D;
@@ -355,7 +357,7 @@ color:#888;
 	color: #fff; 
 }
 #section-strapline {
-	background: #f00bfff;
+	background-color: #f00bff;
 	line-height: 42px;
 	clear: both;
 }
@@ -731,7 +733,7 @@ margin-bottom:45px;
 	margin: 2px;
 }
 #contactUs {
-/*background: #6D508D;*/;
+/*background: #6D508D;*/
 }
 #contactUs .btn {
 	border-radius: 0px !important;
