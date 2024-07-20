@@ -1,5 +1,5 @@
 /* script.js */
-document.getElementById('search-input').addEventListener('input', function() {
+document.getElementById('input-search').addEventListener('input', function() {
     const query = this.value;
 
     if (query.length > 2) {
