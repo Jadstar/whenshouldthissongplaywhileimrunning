@@ -1,59 +1,83 @@
-
 <!doctype html>
 <html lang="en-gb" class="no-js">
 <!--<![endif]-->
 
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="author" content="Jaden Kostogiannis">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="author" content="Jaden Kostogiannis">
 
-    <title> Runnify - Listen in the Moment</title>
-    <meta name="description" content="Search for a song to determine at which point of your run it would be best for">
-    <link href="font/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css" />
+  <title> Runnify - Listen in the Moment</title>
+  <meta name="description" content="Search for a song to determine at which point of your run it would be best for">
+  <link href="font/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
 
-  </head>
-  <body>
-    <script src="js/spotify.js"></script>
+</head>
 
+<body>
+  <script src="js/spotify.js"></script>
+    <section id="banner">
     <div class="main-title">
-    <h1> what type of run song is this?</h1>
-  <div class="search-box">
-    <input type="text" class="input-search" placeholder="Search for Songs">
-  </div>
+      <h1> what type of run song is this?</h1>
+      <div class="search-box">
+        <input type="text" class="input-search" placeholder="Search for Songs">
+      </div>
     </div>
+  </section>
+   
+  <section id="about">
+      <div class="how">
+            <h2>How does it work?</h2>
+            <p>Spotify has a bunch of characteristics for each song which can be accessed via their Web API.</p>
+                <p>E.g.</p>
+    <ul>
+        <li>Danceability</li>
+        <li>Tempo</li>
+        <li>Acousticness</li>
+        <li>Instrumentalness</li>
+        <li>Etc.</li>
+    </ul>
 
-    <section id="aboutUs">
-        <div class="container">    
-          <div class="row feature design">
-            <div class="six columns right">
-              <h2>Clean and Modern Design.</h2>
-              <p>Lorem ipsum dolor sit amet, ea eum labitur scsstie percipitoleat fabulas complectitur deterruisset at pro. Odio quaeque reformidans est eu, expetendis intellegebat has ut, viderer invenire ut his. Has molestie percipit an. Falli volumus efficiantur sed id, ad vel noster propriae. Ius ut etiam vivendo, graeci iudicabit constituto at mea. No soleat fabulas prodesset vel, ut quo solum dicunt.
-                Nec et jority have suffered alteration. </p>
-              <p>Odio quaeque reformidans est eu, expetendis intellegebat has ut, viderer invenire ut his. Has molestie percipit an. Falli volumus efficiantur sed id, ad vel noster propriae. Ius ut etiam vivendo, graeci iudicabit constituto at mea. No soleat fabulas prodesset vel, ut quo solum dicunt.
-                Nec et amet vidisse mentitumsstie percipitoleat fabulas. </p>
-            </div>
-            <div class="six columns feature-media left"> <img src="images/feature-img-1.png" alt=""> </div>
+    <p>By going through songs and theorising when they should play manually, I can separate these songs into 5 different running stages.</p>
+    <ul>
+        <li>Warmup</li>
+        <li>Recovery/ Base Run</li>
+        <li>Tempo Run</li>
+        <li>Race Run</li>
+        <li>Cool down</li>
+        <li>Falloff</li>
+    </ul>
+
+    <p>I've learnt that there is a lot of overlap in which songs are viable for the sections, (race and tempo are practically interchangeable, as are recovery and cooldown). So the priority is to maintain the 'momentum' of the run via the songs playing, rather than guarantee that a specific song is only played during an exact stage of running.</p>
+
+    <p>Essentially, it's just about weeding out 'run-destroying' songs in a playlist, and trying to time motivational music when it is needed the most.</p>
+
+    <p>Since I can't test every song in the world, and I have my own personal biases, I made this site so others can agree/disagree with me so I can try and improve this system.</p>
+
           </div>
-        </div>
-      </section>
-   </body>
-  <footer>
-    <p>
-      Share:
-      <a target="_blank" href="https://www.instagram.com/ahmadbassamemran/"><i class="fab fa-instagram"></i></a>
-      <a target="_blank" href="https://www.linkedin.com/in/ahmademarn/"><i class="fab fa-linkedin"></i></a>
-      <a target="_blank" href="https://codepen.io/ahmadbassamemran/"><i class="fab fa-codepen"></i></a>
-      <a target="_blank" href="https://dev.to/ahmadbassamemran"><i class="fab fa-dev"></i></a>
-      <a target="_blank" href="https://twitter.com/ahmadbassamemra"><i class="fab fa-twitter-square"></i></a>
-    </p>
-  </footer>
-  
-  <div class="youtubeBtn">
-    <a target="_blank" href="https://www.youtube.com/@jadstar7?sub_confirmation=1">
-      <span>Check out my dumb videos</span>
-    </a>
-  
-  </div>
+  </section>
+   <section id="why">
+      <div class="container">
+            <h2>but why?</h2>
+            <p>I don't like it when im trying to run a PB and somewhere over the rainbow (acoustic version) starts playing</p>
+            <p>Sure, a rational person would just make a specialised playlist for running, but what if im having an off day and need rocky theme song to play? I don't want it play every single run I do, but only during the times I need it the most.</p>
+          </div>
+  </section>
+</body>
+<footer>
+  <p>
+    Share:
+    <a target="_blank" href="https://www.instagram.com/ahmadbassamemran/"><i class="fab fa-instagram"></i></a>
+    <a target="_blank" href="https://www.linkedin.com/in/ahmademarn/"><i class="fab fa-linkedin"></i></a>
+    <a target="_blank" href="https://codepen.io/ahmadbassamemran/"><i class="fab fa-codepen"></i></a>
+    <a target="_blank" href="https://dev.to/ahmadbassamemran"><i class="fab fa-dev"></i></a>
+    <a target="_blank" href="https://twitter.com/ahmadbassamemra"><i class="fab fa-twitter-square"></i></a>
+  </p>
+</footer>
+
+<div class="youtubeBtn">
+  <a target="_blank" href="https://www.youtube.com/@jadstar7?sub_confirmation=1">
+    <span>Check out my dumb videos</span>
+  </a>
+
+</div>
