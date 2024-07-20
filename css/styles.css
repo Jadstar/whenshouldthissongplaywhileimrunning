@@ -114,7 +114,7 @@
   
   
   
-  
+  /* Search */
   .input-search{
 	height: fit-content;
 	width: 300px;
@@ -136,6 +136,51 @@
 	border-bottom:1px solid rgba(255,255,255,.5);
   
   }
+
+
+.dropdown {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.track-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.track-details {
+    flex-grow: 1;
+}
+
+.track-name {
+    font-weight: bold;
+}
+
+.artist-name, .track-time {
+    color: #888;
+    font-size: 12px;
+}
+
   /*  footer   */
   footer {
 	  background-color: #222;
