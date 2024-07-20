@@ -1,10 +1,9 @@
 // Function to fetch the access token from the server
 async function fetchAccessToken() {
-    const response = await fetch('/spotify-token');
+    const response = await fetch('http://localhost:3000/spotify-token');
     const data = await response.json();
     return data.access_token;
 }
-
 // Function to search Spotify
 async function searchSpotify(token, query) {
     const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track,artist,album,playlist`, {
