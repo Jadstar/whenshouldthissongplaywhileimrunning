@@ -9,7 +9,9 @@
 	height: 100vh;
 	justify-content: justify;
 	align-items: center;
-	font-family: 'Lato' !important;
+	font-family: 'Helvetica', Arial, sans-serif;
+	overflow-x:hidden;
+
   }
   h1{
 	font-size: 60px;
@@ -102,7 +104,10 @@
   /* Very small screens (width 320px and below) */
   @media (max-width: 320px) {
 	.main-title {
-	  font-size: 18px; /* Smallest font size for very small devices */
+	  font-size: 10px; /* Smallest font size for very small devices */
+	}
+	h1,h2{
+		font-size: 32px;
 	}
 	li {
 	  font-size: 14px;
@@ -139,22 +144,19 @@
 
 
 .dropdown {
-    position: absolute;
-    top: 40px;
+    position: relative;
     left: 0;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
+    border-radius: 6px;
+    background-color: #83C5BE;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: none;
 }
 
 .dropdown-item {
     display: flex;
-    align-items: center;
+    align-items: left;
     padding: 10px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #006D77;
 }
 
 .dropdown-item:last-child {
@@ -173,11 +175,12 @@
 }
 
 .track-name {
+	color:#EDF6F9;
     font-weight: bold;
 }
 
 .artist-name, .track-time {
-    color: #888;
+    color: #EDF6F9;
     font-size: 12px;
 }
 
