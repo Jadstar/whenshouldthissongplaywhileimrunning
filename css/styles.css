@@ -171,15 +171,16 @@ background-color: #EDF6F9;
     display: flex;
     align-items: left;
     padding: 10px;
+
     border-bottom: 1px solid #006D77;
+}
+.dropdown-item:hover {
+    background-color: #e29577;
 
 }
-.dropdown-item:onHover{
+.link-item{ 
 	cursor: pointer;
-}
-
-.dropdown-item:last-child {
-    border-bottom: none;
+	text-decoration: none;
 }
 
 .track-img {

@@ -17,6 +17,18 @@ async function searchSpotify(token, query) {
     return data['tracks']['items'];  // Adjust this based on the API response structure
 }
 
+async function selectSong(token,song) {
+
+    const response = await fetch(`https://api.spotify.com/v1/audio-features?url=${song.url}`,
+        { headers: {
+            'Authorization': 'Bearer ' + token
+            }
+    });
+    const data = await response.json();
+    return data.audio_features;
+    
+}
+
 function populateDropdown(tracks) {
 
     const dropdown = document.getElementById('dropdown');
@@ -32,6 +44,10 @@ function populateDropdown(tracks) {
 
     tracks.forEach(track => {
         const item = document.createElement('div');
+        const link = document.createElement('a');
+        link.href = `/#${track.uri}`;
+        link.classList.add('link-item')
+        link.appendChild(item);
         item.classList.add('dropdown-item');
         const songLength = millisToMinutesAndSeconds(track.duration_ms);
         item.innerHTML = `
@@ -43,13 +59,114 @@ function populateDropdown(tracks) {
             <div class="track-time">${songLength}</div>
         `;
 
-        dropdown.appendChild(item);
+        dropdown.appendChild(link);
     });
+}
+function songSelected(song){
+    //When Song is Clicked, hide other options, run algo, show stats and form
+    const dropdown = document.getElementById('dropdown');
+    dropdown.style.display = 'none';
+    
+    //Algorithim characteristics
+    const songchosen = false;
+
+    var songStates = {
+        "RECOVER" : {
+            "state" : "Recovery/Base Run",
+            "bpmRange" : [0, 200], // BPM match cadence (high prio)
+            "dance" : [.50, .85],
+            "energy" : [.50, .85],
+            "acoustic" : [0, .10],
+            "instrumental" : [0, .40],
+            "liveness" : [0, .20],
+            "speech" : [0, .10]
+        },
+        "FALLOFF" : {
+            "state" : "Falling Off",
+            "bpmRange" : [0, 200], // BPM equal avg cadence, or slightly higher than current cadence (High prio)
+            "happiness" : [.40, .90],
+            "dance" : [.48, .80],
+            "energy" : [.73, 1],
+            "acoustic" : [0, .60],
+            "instrumental" : [0, .15],
+            "liveness" : [.05, .30],
+            "speech" : [0, .20]
+        },
+        "COOLDOWN" : {
+            "state" : "Cooldown Run",
+            "bpmRange" : [0, 200], // BPM lower than current cadence (low prio)
+            "dance" : [.45, .55],
+            "energy" : [.60, .80],
+            "acoustic" : [0, .80],
+            "instrumental" : [0, .20],
+            "liveness" : [0, .25],
+            "speech" : [0, .50]
+        },
+        "RACE" : {
+            "state" : "Race Run",
+            "bpmRange" : [100, 200], // BPM match ideal cadence ~175-180bpm (High prio)
+            "dance" : [.05, .80],
+            "energy" : [.82, 1.00],
+            "acoustic" : [0, .10],
+            "instrumental" : [0, .10],
+            "liveness" : [.05, .60],
+            "speech" : [0, .20]
+        },
+        "TEMPO" : {
+            "state" : "Tempo Run",
+            "bpmRange" : [0, 1000], // BPM match cadence (High prio)
+            "dance" : [.15, .80],
+            "energy" : [.60, 1],
+            "acoustic" : [0, 1],
+            "instrumental" : [0, 1],
+            "liveness" : [0, .80],
+            "speech" : [0, .28]
+        },
+        "WARMUP" : {
+            "state" : "Warmup Run",
+            "bpmRange" : [0, 200], // BPM match cadence (low prio)
+            "dance" : [.25, .85],
+            "energy" : [.30, 1],
+            "acoustic" : [0, .80],
+            "instrumental" : [0, .50],
+            "liveness" : [0, .90],
+            "speech" : [0, .60]
+        }
+    };
+
+    function inRange(value, range){
+        return value >= range[0] && value <= range[1];
+    }
+
+    for (var state=0; state < songStates.size(); state++) {
+        if (inRange(song.tempo, songStates.statelist.state.bpmRange) &&
+            inRange(song.danceability, songStates.statelist.state.dance) &&
+            inRange(song.energy, songStates.statelist.state.energy) &&
+            inRange(song.acousticness, songStates.statelist.state.acoustic) &&
+            inRange(song.instrumentalness, songStates.statelist.state.instrumental) &&
+            inRange(song.liveness, songStates.statelist.state.liveness) &&
+            inRange(song.speechiness, songStates.statelist.state.speech)
+            ) {
+            // categorise the song to its state
+            songchosen = true;
+            System.println("State chosen: " + statelist.state);
+            return songStates[state];
+        }    
+
+    }
+    if (songchosen == false) {
+        return "UNIDENTIFIED";
+    }
+
+
+
+
 }
 
 
 // Main function to handle the workflow
 async function main() {
+    var searchlist='null';
     try {
         const token = await fetchAccessToken();
         // console.log(`token: ${token}`);
@@ -61,6 +178,7 @@ async function main() {
             if (query.length > 0) {
                 const results = await searchSpotify(token, query);
                 populateDropdown(results);
+                searchlist =document.getElementsByClassName('link-item');
             }
             else {
                 dropdown.style.display = 'none';
@@ -68,7 +186,25 @@ async function main() {
         });
     } catch (error) {
         console.error('Error fetching data:', error);
-        document.getElementById('dropdown').innerText = 'Error fetching data. Please try again later.';
+        // document.getElementById('dropdown').innerText = 'Error fetching data. Please try again later.';
+        }
+    
+    //listener for when a song is selected
+    try {
+        
+        if (searchlist !='null'){
+            searchlist.forEach(function(link){
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                console.log("Song chosen.");
+                songSelected(link.href);
+            });
+            });}
+    }
+    catch (error){
+        console.error("Error loading Song data: ",error);
+        document.getElementById('dropdown').innerText = 'Error loading data. Please try again later.';
+
     }
 }
 
