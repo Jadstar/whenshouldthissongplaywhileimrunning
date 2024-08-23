@@ -165,8 +165,8 @@ function songSelected(song){
 
 
 // Main function to handle the workflow
+var searchlist='null';
 async function main() {
-    var searchlist='null';
     try {
         const token = await fetchAccessToken();
         // console.log(`token: ${token}`);
@@ -182,6 +182,7 @@ async function main() {
             }
             else {
                 dropdown.style.display = 'none';
+                searchlist = 'null';
             }
         });
     } catch (error) {
