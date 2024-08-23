@@ -197,7 +197,7 @@ async function main() {
             link.addEventListener('click', function(event) {
                 event.preventDefault();
                 console.log("Song chosen.");
-                songSelected(link.href);
+                songSelected(link.href.split('?')[-1]);
             });
             });}
     }
