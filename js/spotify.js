@@ -19,16 +19,15 @@ async function searchSpotify(token, query) {
 
 async function selectSong(token,song) {
 
-    const response = await fetch(`https://api.spotify.com/v1/audio-features?url=${song.url}`,
+    const response = await fetch(`https://api.spotify.com/v1/audio-features/${song}`,
         { headers: {
             'Authorization': 'Bearer ' + token
             }
     });
     const data = await response.json();
-    return data.audio_features;
-    
+    console.log("received data: " + data);
+    return data;
 }
-
 function populateDropdown(tracks) {
 
     const dropdown = document.getElementById('dropdown');
@@ -45,7 +44,7 @@ function populateDropdown(tracks) {
     tracks.forEach(track => {
         const item = document.createElement('div');
         const link = document.createElement('a');
-        link.href = `${window.location.href.split('?')[0]}?${track.uri}`;
+        link.href = `${window.location.href.split('?')[0]}?${track.id}`;
         link.classList.add('link-item')
         link.appendChild(item);
         item.classList.add('dropdown-item');
@@ -63,100 +62,103 @@ function populateDropdown(tracks) {
     });
 }
 function songSelected(song){
+    
     //When Song is Clicked, hide other options, run algo, show stats and form
     const dropdown = document.getElementById('dropdown');
     dropdown.style.display = 'none';
-    
+    var songChosen = false; 
     //Algorithim characteristics
-    const songchosen = false;
-
-    var songStates = {
-        "RECOVER" : {
-            "state" : "Recovery/Base Run",
-            "bpmRange" : [0, 200], // BPM match cadence (high prio)
-            "dance" : [.50, .85],
-            "energy" : [.50, .85],
-            "acoustic" : [0, .10],
-            "instrumental" : [0, .40],
-            "liveness" : [0, .20],
-            "speech" : [0, .10]
+        const songStates = {
+        "RECOVER": {
+            "state": "Recovery/Base Run",
+            "bpmRange": [0, 200], // BPM match cadence (high prio)
+            "dance": [0.50, 0.85],
+            "energy": [0.50, 0.85],
+            "acoustic": [0, 0.10],
+            "instrumental": [0, 0.40],
+            "liveness": [0, 0.20],
+            "speech": [0, 0.10]
         },
-        "FALLOFF" : {
-            "state" : "Falling Off",
-            "bpmRange" : [0, 200], // BPM equal avg cadence, or slightly higher than current cadence (High prio)
-            "happiness" : [.40, .90],
-            "dance" : [.48, .80],
-            "energy" : [.73, 1],
-            "acoustic" : [0, .60],
-            "instrumental" : [0, .15],
-            "liveness" : [.05, .30],
-            "speech" : [0, .20]
+        "FALLOFF": {
+            "state": "Falling Off",
+            "bpmRange": [0, 200], // BPM equal avg cadence, or slightly higher than current cadence (High prio)
+            "happiness": [0.40, 0.90],
+            "dance": [0.48, 0.80],
+            "energy": [0.73, 1],
+            "acoustic": [0, 0.60],
+            "instrumental": [0, 0.15],
+            "liveness": [0.05, 0.30],
+            "speech": [0, 0.20]
         },
-        "COOLDOWN" : {
-            "state" : "Cooldown Run",
-            "bpmRange" : [0, 200], // BPM lower than current cadence (low prio)
-            "dance" : [.45, .55],
-            "energy" : [.60, .80],
-            "acoustic" : [0, .80],
-            "instrumental" : [0, .20],
-            "liveness" : [0, .25],
-            "speech" : [0, .50]
+        "COOLDOWN": {
+            "state": "Cooldown Run",
+            "bpmRange": [0, 200], // BPM lower than current cadence (low prio)
+            "dance": [0.45, 0.55],
+            "energy": [0.60, 0.80],
+            "acoustic": [0, 0.80],
+            "instrumental": [0, 0.20],
+            "liveness": [0, 0.25],
+            "speech": [0, 0.50]
         },
-        "RACE" : {
-            "state" : "Race Run",
-            "bpmRange" : [100, 200], // BPM match ideal cadence ~175-180bpm (High prio)
-            "dance" : [.05, .80],
-            "energy" : [.82, 1.00],
-            "acoustic" : [0, .10],
-            "instrumental" : [0, .10],
-            "liveness" : [.05, .60],
-            "speech" : [0, .20]
+        "RACE": {
+            "state": "Race Run",
+            "bpmRange": [100, 200], // BPM match ideal cadence ~175-180bpm (High prio)
+            "dance": [0.05, 0.80],
+            "energy": [0.82, 1.00],
+            "acoustic": [0, 0.10],
+            "instrumental": [0, 0.10],
+            "liveness": [0.05, 0.60],
+            "speech": [0, 0.20]
         },
-        "TEMPO" : {
-            "state" : "Tempo Run",
-            "bpmRange" : [0, 1000], // BPM match cadence (High prio)
-            "dance" : [.15, .80],
-            "energy" : [.60, 1],
-            "acoustic" : [0, 1],
-            "instrumental" : [0, 1],
-            "liveness" : [0, .80],
-            "speech" : [0, .28]
+        "TEMPO": {
+            "state": "Tempo Run",
+            "bpmRange": [0, 1000], // BPM match cadence (High prio)
+            "dance": [0.15, 0.80],
+            "energy": [0.60, 1],
+            "acoustic": [0, 1],
+            "instrumental": [0, 1],
+            "liveness": [0, 0.80],
+            "speech": [0, 0.28]
         },
-        "WARMUP" : {
-            "state" : "Warmup Run",
-            "bpmRange" : [0, 200], // BPM match cadence (low prio)
-            "dance" : [.25, .85],
-            "energy" : [.30, 1],
-            "acoustic" : [0, .80],
-            "instrumental" : [0, .50],
-            "liveness" : [0, .90],
-            "speech" : [0, .60]
+        "WARMUP": {
+            "state": "Warmup Run",
+            "bpmRange": [0, 200], // BPM match cadence (low prio)
+            "dance": [0.25, 0.85],
+            "energy": [0.30, 1],
+            "acoustic": [0, 0.80],
+            "instrumental": [0, 0.50],
+            "liveness": [0, 0.90],
+            "speech": [0, 0.60]
         }
     };
 
-    function inRange(value, range){
+    function inRange(value, range) {
         return value >= range[0] && value <= range[1];
     }
 
-    for (var state=0; state < songStates.size(); state++) {
-        if (inRange(song.tempo, songStates.statelist.state.bpmRange) &&
-            inRange(song.danceability, songStates.statelist.state.dance) &&
-            inRange(song.energy, songStates.statelist.state.energy) &&
-            inRange(song.acousticness, songStates.statelist.state.acoustic) &&
-            inRange(song.instrumentalness, songStates.statelist.state.instrumental) &&
-            inRange(song.liveness, songStates.statelist.state.liveness) &&
-            inRange(song.speechiness, songStates.statelist.state.speech)
-            ) {
-            // categorise the song to its state
-            songchosen = true;
-            System.println("State chosen: " + statelist.state);
-            return songStates[state];
-        }    
-
+    for (let stateKey in songStates) {
+        const state = songStates[stateKey];
+        if (inRange(song.tempo, state.bpmRange) &&
+            inRange(song.danceability, state.dance) &&
+            inRange(song.energy, state.energy) &&
+            inRange(song.acousticness, state.acoustic) &&
+            inRange(song.instrumentalness, state.instrumental) &&
+            inRange(song.liveness, state.liveness) &&
+            inRange(song.speechiness, state.speech)
+        ) {
+            // Categorize the song to its state
+            songChosen = true;
+            console.log("State chosen: " + state.state);
+            return state; // Return the matched state
+        }
     }
-    if (songchosen == false) {
+
+    // If no state is matched
+    if (!songChosen) {
+        console.log("Song does not match any state criteria");
         return "UNIDENTIFIED";
     }
+
 
 
 
@@ -178,14 +180,21 @@ async function main() {
             if (query.length > 0) {
                 const results = await searchSpotify(token, query);
                 populateDropdown(results);
-                searchlist =document.getElementsByClassName('link-item');
-                
-            if (searchlist !='null'){
+                searchlist =Array.from(document.getElementsByClassName('link-item'));
+                if (searchlist !='null'){
                 searchlist.forEach(function(link){
                 link.addEventListener('click', function(event) {
                     event.preventDefault();
                     console.log("Song chosen.");
-                    songSelected(link.href.split('?')[-1]);
+                    var song =link.href.split('?').pop();
+                    selectSong(token, song).then(data => {
+                        if (data) {
+                            songSelected(data); // Proceed only if data is successfully fetched
+                        } else {
+                            console.log("No data received or error occurred.");
+                        }
+                        });
+
                 });
                 });}
                 }
