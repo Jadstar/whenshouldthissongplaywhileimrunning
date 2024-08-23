@@ -179,34 +179,27 @@ async function main() {
                 const results = await searchSpotify(token, query);
                 populateDropdown(results);
                 searchlist =document.getElementsByClassName('link-item');
-            }
-            else {
-                dropdown.style.display = 'none';
-                searchlist = 'null';
-            }
-        });
+                
+            if (searchlist !='null'){
+                searchlist.forEach(function(link){
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    console.log("Song chosen.");
+                    songSelected(link.href.split('?')[-1]);
+                });
+                });}
+                }
+                else {
+                    dropdown.style.display = 'none';
+                    searchlist = 'null';
+                }
+            });
     } catch (error) {
         console.error('Error fetching data:', error);
         // document.getElementById('dropdown').innerText = 'Error fetching data. Please try again later.';
         }
     
     //listener for when a song is selected
-    try {
-        
-        if (searchlist !='null'){
-            searchlist.forEach(function(link){
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                console.log("Song chosen.");
-                songSelected(link.href.split('?')[-1]);
-            });
-            });}
-    }
-    catch (error){
-        console.error("Error loading Song data: ",error);
-        document.getElementById('dropdown').innerText = 'Error loading data. Please try again later.';
-
-    }
 }
 
 // Run the main function when the DOM content is loaded
