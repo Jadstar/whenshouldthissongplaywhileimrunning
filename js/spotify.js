@@ -45,7 +45,7 @@ function populateDropdown(tracks) {
     tracks.forEach(track => {
         const item = document.createElement('div');
         const link = document.createElement('a');
-        link.href = `${window.location.origin}?${track.uri}`;
+        link.href = `${window.location.href.split('?')[0]}?${track.uri}`;
         link.classList.add('link-item')
         link.appendChild(item);
         item.classList.add('dropdown-item');
