@@ -61,6 +61,27 @@ function populateDropdown(tracks) {
         dropdown.appendChild(link);
     });
 }
+function showcaseState(song,state){
+//show the image, song name, artist and audio features, as well as the final state
+    const analysis = document.createElement('div');
+    const showResults = document.getElementById('analysis');
+    analysis.innerHTML = `
+            <div class="state">
+                <h2> This is a ${state.state} song </h2>
+                <p class="state-desc"> ${state.desc} </p>
+                <div class="button-horiz">
+                    <button class="agree-buttons">Agree?</button>
+                    <button class="agree-buttons">No way</button>
+
+                    </div>
+            </div>
+            <img src="${song.img}" alt="${song.name}" class="analysis-img">
+            <div class="analysis-details">
+                <div class="track-name">${song.name}</div>
+                <div class="artist-name">${song.artists}</div>
+            </div>`
+    showResults.append(analysis);
+}
 function songSelected(song){
     
     //When Song is Clicked, hide other options, run algo, show stats and form
@@ -77,7 +98,8 @@ function songSelected(song){
             "acoustic": [0, 0.10],
             "instrumental": [0, 0.40],
             "liveness": [0, 0.20],
-            "speech": [0, 0.10]
+            "speech": [0, 0.10],
+            "desc": "A good recovery/base run song is a calmer, less intrusive song. Allowing you to relax and enjoy the scenery with some background music behind it."
         },
         "FALLOFF": {
             "state": "Falling Off",
@@ -88,7 +110,8 @@ function songSelected(song){
             "acoustic": [0, 0.60],
             "instrumental": [0, 0.15],
             "liveness": [0.05, 0.30],
-            "speech": [0, 0.20]
+            "speech": [0, 0.20],
+            "desc": "You've hit the wall. There's no more fuel in the tank... or is there? A good falloff song is there to bring you back from the dead, inspiring you to greatness through uplifting lyrics or high intensity music. These songs have one message. DON'T GIVE UP!"
         },
         "COOLDOWN": {
             "state": "Cooldown Run",
@@ -98,7 +121,9 @@ function songSelected(song){
             "acoustic": [0, 0.80],
             "instrumental": [0, 0.20],
             "liveness": [0, 0.25],
-            "speech": [0, 0.50]
+            "speech": [0, 0.50],
+            "desc": "Similar to a recovery run song, a cooldown song is best near the end or after a big run to truly emphasise what you've done. Well done"
+
         },
         "RACE": {
             "state": "Race Run",
@@ -108,7 +133,8 @@ function songSelected(song){
             "acoustic": [0, 0.10],
             "instrumental": [0, 0.10],
             "liveness": [0.05, 0.60],
-            "speech": [0, 0.20]
+            "speech": [0, 0.20],
+            "desc": "A race song is the ultimate hypeman for your big race, or even for an all out sprint. Forget about zone 2, forget about ideal cadence, its time to run as fast as you possibly can."
         },
         "TEMPO": {
             "state": "Tempo Run",
@@ -118,7 +144,8 @@ function songSelected(song){
             "acoustic": [0, 1],
             "instrumental": [0, 1],
             "liveness": [0, 0.80],
-            "speech": [0, 0.28]
+            "speech": [0, 0.28],
+            "desc": "Maintain your cadence, maintain your speed, that is what the tempo run songs are all about. High intensity, but comfortable, these songs are what will drive you to your next PB."
         },
         "WARMUP": {
             "state": "Warmup Run",
@@ -128,7 +155,8 @@ function songSelected(song){
             "acoustic": [0, 0.80],
             "instrumental": [0, 0.50],
             "liveness": [0, 0.90],
-            "speech": [0, 0.60]
+            "speech": [0, 0.60],
+            "desc":"If you're just getting started, a warmup song is exactly what you need. A less intensive song that still will motivate you and push forward until you begin hitting your stride"
         }
     };
 
@@ -160,14 +188,12 @@ function songSelected(song){
     }
 
 
-
-
-
 }
 
 
 // Main function to handle the workflow
 var searchlist='null';
+var state = 'null';
 async function main() {
     try {
         const token = await fetchAccessToken();
@@ -189,7 +215,22 @@ async function main() {
                     var song =link.href.split('?').pop();
                     selectSong(token, song).then(data => {
                         if (data) {
-                            songSelected(data); // Proceed only if data is successfully fetched
+                            state = songSelected(data); // Proceed only if data is successfully fetched
+                            //get current track selected details
+                            const track = {};  // Create an object to hold track details
+                            const trackNameElement = link.getElementsByClassName("track-name")[0];
+                            const trackArtistsElement = link.getElementsByClassName("artist-name")[0];
+                            const trackImgElement = link.getElementsByClassName("track-img")[0];
+                            const trackSongLengthElement = link.getElementsByClassName("track-time")[0];
+
+                            // Set track object properties
+                            track.name = trackNameElement ? trackNameElement.textContent : '';
+                            track.artists = trackArtistsElement ? trackArtistsElement.textContent : '';
+                            track.img = trackImgElement ? trackImgElement.src : '';  // Assuming it’s an <img> element
+                            track.songLength = trackSongLengthElement ? trackSongLengthElement.textContent : '';
+                
+                            showcaseState(track,state);
+
                         } else {
                             console.log("No data received or error occurred.");
                         }
