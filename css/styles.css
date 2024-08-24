@@ -62,7 +62,10 @@
 }
 .main-title {
 text-align: center;
-padding: 10%;
+padding-left: 10%;
+padding-right: 10%;
+padding-bottom: 10%;
+padding-top: 2%;
 color: #182244;
 }
 .container {
@@ -169,6 +172,77 @@ background-color: #182244;
 
 .fa-search {
 	size: 15px;
+}
+.analysis{
+	margin: 5%;
+}
+.state{
+
+}
+.button-horiz{
+margin: 5%;
+}
+.state-desc{
+	text-align: justify;
+	font-size:16px;
+}
+.highlighted-state{
+	color: #ffb87d;
+	text-shadow: 2px 2px 0px #182244;
+}
+
+
+.agree-buttons{
+  background-color: transparent;
+  border: 0 solid #E5E7EB;
+  border-bottom: 2px solid #ffb87d;
+  box-sizing: border-box;
+  color: #182244;
+  font-weight: 700;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  position: relative;
+  text-align: center;
+  text-decoration: none #000000 solid;
+  text-decoration-thickness: auto;
+  position: relative;
+  cursor: pointer;
+  font-size: 24px;
+  margin-right: 5%;
+  padding-inline: 5%;
+}
+
+.agree-buttons:hover{
+	color: #ffb87d;
+}
+
+.details-wrapper{
+height: fit-content;
+}
+.analysis-img{
+	max-width: 60%;
+}
+.analysis-details{
+	float:inline-end;
+	width: 40%;
+	padding-left: 3%;
+}
+.song-name {
+	margin: 0;
+	text-align: left;
+}
+
+.w3-progress-container{
+	width:100%;height:1.5em;position:relative;background-color:#f1f1f1;	
+}
+.w3-progressbar{
+	background-color:#ffb87d;height:100%;position:absolute;line-height:inherit
+}
+.w3-round-xlarge{
+	border-radius:16px!important;
+	margin-bottom:5%;
+}
+.audio-progress-wrapper{
 }
 .dropdown {
     position: relative;

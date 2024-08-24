@@ -67,19 +67,47 @@ function showcaseState(song,state){
     const showResults = document.getElementById('analysis');
     analysis.innerHTML = `
             <div class="state">
-                <h2> This is a ${state.state} song </h2>
+                <h2> This is a <span class="highlighted-state">${state.state}</span> song </h2>
                 <p class="state-desc"> ${state.desc} </p>
                 <div class="button-horiz">
-                    <button class="agree-buttons">Agree?</button>
-                    <button class="agree-buttons">No way</button>
-
+                    <button role="button" class="agree-buttons">I agree</button>
+                    <button role="button" class="agree-buttons">I disagree</button>
                     </div>
             </div>
-            <img src="${song.img}" alt="${song.name}" class="analysis-img">
-            <div class="analysis-details">
-                <div class="track-name">${song.name}</div>
-                <div class="artist-name">${song.artists}</div>
+            <div class="details-wrapper">
+                <div class="analysis-details">
+                    <h2 class="song-name">${song.name}</h2>
+                    <h3 class="song-name">${song.artists}</h2>
+                    <p class="audio-feature-name"> Tempo: ${song.tempo}bpm </p>
+                    <div class="audio-progress-wrapper">
+                        <div class="w3-progress-container w3-round-xlarge">
+                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                        </div>
+                        <div class="w3-progress-container w3-round-xlarge">
+                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                        </div>
+                        <div class="w3-progress-container w3-round-xlarge">
+                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                        </div>
+                        <div class="w3-progress-container w3-round-xlarge">
+                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                        </div>
+                        <div class="w3-progress-container w3-round-xlarge">
+                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                        </div>
+                        <div class="w3-progress-container w3-round-xlarge">
+                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                        </div>
+                        <div class="w3-progress-container w3-round-xlarge">
+                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                        </div>
+                    </div>
+                </div>
+                    <img class="analysis-img" src="${song.img}" alt="${song.name}" >
             </div>`
+    if (showResults.innerHTML != ''){
+        showResults.innerHTML = '';
+    }
     showResults.append(analysis);
 }
 function songSelected(song){
@@ -222,7 +250,14 @@ async function main() {
                             const trackArtistsElement = link.getElementsByClassName("artist-name")[0];
                             const trackImgElement = link.getElementsByClassName("track-img")[0];
                             const trackSongLengthElement = link.getElementsByClassName("track-time")[0];
-
+                            
+                            track.tempo =data.tempo;
+                            track.danceability =data.danceability;
+                            track.energy = data.energy;
+                            track.acoustic = data.acoustic;
+                            track.instrumentalness = data.instrumentalness
+                            track.liveness = data.liveness;
+                            track.speechiness = data.speechiness;
                             // Set track object properties
                             track.name = trackNameElement ? trackNameElement.textContent : '';
                             track.artists = trackArtistsElement ? trackArtistsElement.textContent : '';
