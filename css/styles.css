@@ -108,16 +108,19 @@ background-color: #182244;
 	  padding: 1%;
 	}
 	h1,h2 {
-	  font-size: 20px;
+	  font-size: 24px;
 	}
 	  li {
 	  font-size: 16px;
 	}
 	p {
-	  font-size: 16px;
+	  font-size: 14px;
 	}
 	input{
 		font-size: 18px;
+	}
+	.analysis-details {
+		display: block !important;
 	}
   }
   
@@ -128,16 +131,19 @@ background-color: #182244;
 	  padding: 1%;
 	}
 	h1,h2{
-		font-size: 16px;
+		font-size: 20px;
 	}
 	li {
 	  font-size: 14px;
 	}
 	p {
-	  font-size: 14px;
+	  font-size: 12px;
 	}
 	input{
 		font-size: 18px;
+	}
+	.analysis-details {
+		display: block !important;
 	}
   }
   
@@ -159,7 +165,7 @@ background-color: #182244;
 
 
 	padding-right: 40px;
-	border-bottom:1px solid #ffb87d;
+	border-bottom:2px solid #ffb87d;
   }
   input-search:focus{
 	width: 300px;
@@ -184,7 +190,6 @@ margin: 5%;
 }
 .state-desc{
 	text-align: justify;
-	font-size:16px;
 }
 .highlighted-state{
 	color: #ffb87d;
@@ -225,16 +230,16 @@ font-size: 14px;
 height: fit-content;
 }
 .analysis-img{
-	max-width: 60%;
+	max-width: 50%;
+	height: fit-content;
+	flex-grow: 1;
 }
 .analysis-details{
-	float:inline-end;
-	width: 40%;
-	padding-left: 3%;
+display: flex;
 }
 .song-name {
 	margin: 0;
-	text-align: left;
+	text-align: center;
 }
 
 .w3-progress-container{
@@ -248,6 +253,8 @@ height: fit-content;
 	margin-bottom:5%;
 }
 .audio-progress-wrapper{
+	flex-grow: 1;
+	padding-left: 2%;
 }
 .dropdown {
     position: relative;

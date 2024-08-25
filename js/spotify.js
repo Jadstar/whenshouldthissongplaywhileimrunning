@@ -82,9 +82,10 @@ function showcaseState(song,state){
                     </div>
             </div>
             <div class="details-wrapper">
-                <div class="analysis-details">
-                    <h2 class="song-name">${song.name}</h2>
                     <h3 class="song-name">${song.artists}</h2>
+                    <h2 class="song-name">${song.name}</h2>
+                <div class="analysis-details">
+                    <img class="analysis-img" src="${song.img}" alt="${song.name}" >
                     <div class="audio-progress-wrapper">
                         <h4 class="audio-feature-name"> Tempo: ${tempo}bpm </h4>
                         <div class="w3-progress-container w3-round-xlarge">
@@ -102,17 +103,20 @@ function showcaseState(song,state){
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:${instrumentalness}%"></div>
                         </div>
-                        <h4 class="audio-feature-name"> Liveness: ${speechiness} </h4>
+                        <h4 class="audio-feature-name"> Liveness: ${liveness} </h4>
                         <div class="w3-progress-container w3-round-xlarge">
-                            <div class="w3-progressbar w3-round-xlarge" style="width:${speechiness}%"></div>
+                            <div class="w3-progressbar w3-round-xlarge" style="width:${liveness}%"></div>
                         </div>
                         <h4 class="audio-feature-name"> Acousticness: ${acousticness}</h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:${acousticness}%"></div>
                         </div>
+                        <h4 class="audio-feature-name"> Speechiness : ${speechiness} </h4>
+                        <div class="w3-progress-container w3-round-xlarge">
+                            <div class="w3-progressbar w3-round-xlarge" style="width:${speechiness}%"></div>
+                        </div>
                     </div>
                 </div>
-                    <img class="analysis-img" src="${song.img}" alt="${song.name}" >
             </div>`
     if (showResults.innerHTML != ''){
         showResults.innerHTML = '';
@@ -219,9 +223,13 @@ function songSelected(song){
     }
 
     // If no state is matched
+        var noState =  {
+            "state": "Broken",
+            "desc":"This song didn't match any of the possible criterias for running... Maybe for good reason? Or probably because my algorithm is broken. Either way, let me know what type of song this should be by clicking 'I disagree' or if this is just a straight up bad song to run to or if you want to be funny, click 'I agree'"
+            };
     if (!songChosen) {
         console.log("Song does not match any state criteria");
-        return "UNIDENTIFIED";
+        return noState;
     }
 
 
