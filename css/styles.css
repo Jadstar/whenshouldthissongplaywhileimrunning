@@ -191,7 +191,12 @@ margin: 5%;
 	text-shadow: 2px 2px 0px #182244;
 }
 
+.audio-feature-name {
+text-align: left;
+margin: 1%;
+font-size: 14px;
 
+}
 .agree-buttons{
   background-color: transparent;
   border: 0 solid #E5E7EB;

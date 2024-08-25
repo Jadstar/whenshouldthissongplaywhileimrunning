@@ -78,26 +78,32 @@ function showcaseState(song,state){
                 <div class="analysis-details">
                     <h2 class="song-name">${song.name}</h2>
                     <h3 class="song-name">${song.artists}</h2>
-                    <p class="audio-feature-name"> Tempo: ${song.tempo}bpm </p>
                     <div class="audio-progress-wrapper">
+                        <h4 class="audio-feature-name"> Tempo: ${song.tempo}bpm </h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
                         </div>
+                        <h4 class="audio-feature-name"> Energy: ${song.energy}</h4>
+                        <div class="w3-progress-container w3-round-xlarge">
+                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                            </div>
+                            <h4 class="audio-feature-name"> Danceability: ${song.danceability}</h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
                         </div>
+                        <h4 class="audio-feature-name"> Instrumentalness: ${song.instrumentalness}</h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
                         </div>
+                        <h4 class="audio-feature-name"> Liveness: ${song.liveness}</h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
                         </div>
+                        <h4 class="audio-feature-name"> Speechiness: ${song.speechiness} </h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
                         </div>
-                        <div class="w3-progress-container w3-round-xlarge">
-                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
-                        </div>
+                        <h4 class="audio-feature-name"> Acousticness: ${song.acousticness}</h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
                         </div>
@@ -254,7 +260,7 @@ async function main() {
                             track.tempo =data.tempo;
                             track.danceability =data.danceability;
                             track.energy = data.energy;
-                            track.acoustic = data.acoustic;
+                            track.acousticness = data.acousticness;
                             track.instrumentalness = data.instrumentalness
                             track.liveness = data.liveness;
                             track.speechiness = data.speechiness;
