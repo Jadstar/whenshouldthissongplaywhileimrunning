@@ -65,6 +65,13 @@ function showcaseState(song,state){
 //show the image, song name, artist and audio features, as well as the final state
     const analysis = document.createElement('div');
     const showResults = document.getElementById('analysis');
+    const tempo = Math.round(song.tempo);
+    const energy = Math.round(song.energy*100);
+    const danceability  = Math.round(song.danceability *100);
+    const instrumentalness = Math.round(song.instrumentalness*100);
+    const acousticness = Math.round(song.acousticness*100);
+    const liveness = Math.round(song.liveness*100);
+    const speechiness = Math.round(song.speechiness*100);
     analysis.innerHTML = `
             <div class="state">
                 <h2> This is a <span class="highlighted-state">${state.state}</span> song </h2>
@@ -79,33 +86,29 @@ function showcaseState(song,state){
                     <h2 class="song-name">${song.name}</h2>
                     <h3 class="song-name">${song.artists}</h2>
                     <div class="audio-progress-wrapper">
-                        <h4 class="audio-feature-name"> Tempo: ${song.tempo}bpm </h4>
+                        <h4 class="audio-feature-name"> Tempo: ${tempo}bpm </h4>
                         <div class="w3-progress-container w3-round-xlarge">
-                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                            <div class="w3-progressbar w3-round-xlarge" style="width:${tempo/250*100}%"></div>
                         </div>
-                        <h4 class="audio-feature-name"> Energy: ${song.energy}</h4>
+                        <h4 class="audio-feature-name"> Energy: ${energy}</h4>
                         <div class="w3-progress-container w3-round-xlarge">
-                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                            <div class="w3-progressbar w3-round-xlarge" style="width:${energy}%"></div>
                             </div>
-                            <h4 class="audio-feature-name"> Danceability: ${song.danceability}</h4>
+                            <h4 class="audio-feature-name"> Danceability: ${danceability}</h4>
                         <div class="w3-progress-container w3-round-xlarge">
-                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                            <div class="w3-progressbar w3-round-xlarge" style="width:${danceability}%"></div>
                         </div>
-                        <h4 class="audio-feature-name"> Instrumentalness: ${song.instrumentalness}</h4>
+                        <h4 class="audio-feature-name"> Instrumentalness: ${instrumentalness}</h4>
                         <div class="w3-progress-container w3-round-xlarge">
-                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                            <div class="w3-progressbar w3-round-xlarge" style="width:${instrumentalness}%"></div>
                         </div>
-                        <h4 class="audio-feature-name"> Liveness: ${song.liveness}</h4>
+                        <h4 class="audio-feature-name"> Liveness: ${speechiness} </h4>
                         <div class="w3-progress-container w3-round-xlarge">
-                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                            <div class="w3-progressbar w3-round-xlarge" style="width:${speechiness}%"></div>
                         </div>
-                        <h4 class="audio-feature-name"> Speechiness: ${song.speechiness} </h4>
+                        <h4 class="audio-feature-name"> Acousticness: ${acousticness}</h4>
                         <div class="w3-progress-container w3-round-xlarge">
-                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
-                        </div>
-                        <h4 class="audio-feature-name"> Acousticness: ${song.acousticness}</h4>
-                        <div class="w3-progress-container w3-round-xlarge">
-                            <div class="w3-progressbar w3-round-xlarge" style="width:25%"></div>
+                            <div class="w3-progressbar w3-round-xlarge" style="width:${acousticness}%"></div>
                         </div>
                     </div>
                 </div>
