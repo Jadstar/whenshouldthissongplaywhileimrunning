@@ -21,6 +21,37 @@
 	letter-spacing: 2px;
 	text-align: center;
   }
+
+/* CSS */
+.submit-button {
+  background-color: #182244;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  list-style: none;
+  outline: none;
+  padding: 5px 10px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.submit-button:hover,
+.submit-button:focus {
+  background-color: #ffb87d;
+}
+form {
+	justify-content: center;
+}
   h2 {
 	
 	font-size: 48px;
@@ -163,7 +194,7 @@ background-color: #182244;
 	background-color: transparent;
 	color:#182244;
 
-
+    width:min-content;
 	padding-right: 40px;
 	border-bottom:2px solid #ffb87d;
   }
@@ -219,6 +250,7 @@ font-size: 14px;
   cursor: pointer;
   font-size: 24px;
   margin-right: 5%;
+  margin-left: 5%;
   padding-inline: 5%;
 }
 
@@ -280,7 +312,23 @@ display: flex;
 	cursor: pointer;
 	text-decoration: none;
 }
-
+.dis-dropdown{
+  background-color: transparent;
+  border: 0 solid #E5E7EB;
+  border-bottom: 2px solid #ffb87d;
+  box-sizing: border-box;
+  color: #182244;
+  font-weight: 700;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  position: relative;
+  text-align: center;
+  text-decoration: none #000000 solid;
+  text-decoration-thickness: auto;
+  position: relative;
+  cursor: pointer;
+  font-size: 24px;
+}
 .track-img {
     max-width: 50px;
     max-height: 50px; 

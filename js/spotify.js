@@ -1,4 +1,4 @@
-
+var song;
 
 // Function to fetch the access token from the server
 async function fetchAccessToken() {
@@ -25,7 +25,7 @@ async function selectSong(token,song) {
             }
     });
     const data = await response.json();
-    console.log("received data: " + data);
+    // console.log("received data: " + data);
     return data;
 }
 function populateDropdown(tracks) {
@@ -76,42 +76,42 @@ function showcaseState(song,state){
             <div class="state">
                 <h2> This is a <span class="highlighted-state">${state.state}</span> song </h2>
                 <p class="state-desc"> ${state.desc} </p>
-                <div class="button-horiz">
-                    <button role="button" class="agree-buttons">I agree</button>
-                    <button role="button" class="agree-buttons">I disagree</button>
+                <div id='feedback' class="button-horiz">
+                    <button role="button" id="agree" onclick='agreeFunction()' class="agree-buttons">I agree</button>
+                    <button role="button" id="disagree" onclick='disagreeFunction()' class="agree-buttons">I disagree</button>
                     </div>
             </div>
             <div class="details-wrapper">
-                    <h3 class="song-name">${song.artists}</h2>
-                    <h2 class="song-name">${song.name}</h2>
+                    <h3 id="artist" class="song-name">${song.artists}</h2>
+                    <h2 id="song_name" class="song-name">${song.name}</h2>
                 <div class="analysis-details">
                     <img class="analysis-img" src="${song.img}" alt="${song.name}" >
                     <div class="audio-progress-wrapper">
-                        <h4 class="audio-feature-name"> Tempo: ${tempo}bpm </h4>
+                        <h4 id="tempo" class="audio-feature-name"> Tempo: ${tempo}bpm </h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:${tempo/250*100}%"></div>
                         </div>
-                        <h4 class="audio-feature-name"> Energy: ${energy}</h4>
+                        <h4 id="energy" class="audio-feature-name"> Energy: ${energy}</h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:${energy}%"></div>
                             </div>
-                            <h4 class="audio-feature-name"> Danceability: ${danceability}</h4>
+                            <h4 id="dance" class="audio-feature-name"> Danceability: ${danceability}</h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:${danceability}%"></div>
                         </div>
-                        <h4 class="audio-feature-name"> Instrumentalness: ${instrumentalness}</h4>
+                        <h4 id="instrumental" class="audio-feature-name"> Instrumentalness: ${instrumentalness}</h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:${instrumentalness}%"></div>
                         </div>
-                        <h4 class="audio-feature-name"> Liveness: ${liveness} </h4>
+                        <h4 id="liveness" class="audio-feature-name"> Liveness: ${liveness} </h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:${liveness}%"></div>
                         </div>
-                        <h4 class="audio-feature-name"> Acousticness: ${acousticness}</h4>
+                        <h4 id="acoustic" class="audio-feature-name"> Acousticness: ${acousticness}</h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:${acousticness}%"></div>
                         </div>
-                        <h4 class="audio-feature-name"> Speechiness : ${speechiness} </h4>
+                        <h4 id="speech" class="audio-feature-name"> Speechiness : ${speechiness} </h4>
                         <div class="w3-progress-container w3-round-xlarge">
                             <div class="w3-progressbar w3-round-xlarge" style="width:${speechiness}%"></div>
                         </div>
@@ -143,7 +143,7 @@ function songSelected(song){
             "desc": "A good recovery/base run song is a calmer, less intrusive song. Allowing you to relax and enjoy the scenery with some background music behind it."
         },
         "FALLOFF": {
-            "state": "Falling Off",
+            "state": "Revival",
             "bpmRange": [0, 200], // BPM equal avg cadence, or slightly higher than current cadence (High prio)
             "happiness": [0.40, 0.90],
             "dance": [0.48, 0.80],
@@ -152,7 +152,7 @@ function songSelected(song){
             "instrumental": [0, 0.15],
             "liveness": [0.05, 0.30],
             "speech": [0, 0.20],
-            "desc": "You've hit the wall. There's no more fuel in the tank... or is there? A good falloff song is there to bring you back from the dead, inspiring you to greatness through uplifting lyrics or high intensity music. These songs have one message. DON'T GIVE UP!"
+            "desc": "You've hit the wall. There's no more fuel in the tank... or is there? A good revival song is there to bring you back from the dead, inspiring you to greatness through uplifting lyrics or high intensity music. These songs have one message. DON'T GIVE UP!"
         },
         "COOLDOWN": {
             "state": "Cooldown Run",
@@ -217,7 +217,7 @@ function songSelected(song){
         ) {
             // Categorize the song to its state
             songChosen = true;
-            console.log("State chosen: " + state.state);
+            // console.log("State chosen: " + state.state);
             return state; // Return the matched state
         }
     }
@@ -228,13 +228,75 @@ function songSelected(song){
             "desc":"This song didn't match any of the possible criterias for running... Maybe for good reason? Or probably because my algorithm is broken. Either way, let me know what type of song this should be by clicking 'I disagree' or if this is just a straight up bad song to run to or if you want to be funny, click 'I agree'"
             };
     if (!songChosen) {
-        console.log("Song does not match any state criteria");
+        // console.log("Song does not match any state criteria");
         return noState;
     }
 
 
 }
 
+
+function agreeFunction(){
+const agreeBox = document.createElement('div');
+const feedback = document.getElementById('feedback');
+feedback.innerHTML='';
+agreeBox.innerHTML= `
+    <div class="agreebox">
+    <form action="scripts/sql.py/add" method="post">
+        <p> Thanks for the feedback! </p> 
+        </form>
+    </div>
+`;
+//post song data and agree to db 
+feedback.append(agreeBox);
+
+}
+function disagreeFunction(){
+const disagreeBox = document.createElement('div');
+const feedback = document.getElementById('feedback');
+feedback.innerHTML='';
+const current_state = document.getElementsByClassName("highlighted-state");
+const artist = document.getElementById('artist').value;
+const dance = document.getElementById('dance').value;
+const energy = document.getElementById('energy').value;
+const acoustic = document.getElementById('acoustic').value;
+const instrumental = document.getElementById('instrumental').value;
+const liveness = document.getElementById('liveness').value;
+const speech = document.getElementById('speech').value;
+const tempo = document.getElementById('tempo').value;
+const user_agree = false;
+disagreeBox.innerHTML = `
+    <div class="disagreebox"> 
+    <p> What type of running should this song be for? </p>
+    <form action="scripts/sql.py/add" method="post">
+
+    <select id="new_state" class="dis-dropdown">
+        <option id="warmup">Warmup </option>
+        <option id="recovery">Recovery/Base </option>
+        <option id="tempo">Tempo </option>
+        <option id="revival">Revival </option>
+        <option id="race">Race </option>
+        <option id="cooldown">Cooldown </option>
+    </select>
+
+    <input type="hidden" name="spotify_id" value="${song.url}">
+    <input type="hidden" name="song_name" value="${song.name}">
+    <input type="hidden" name="artist" value="${artist}">
+    <input type="hidden" name="current_state" value="${current_state}">
+    <input type="hidden" name="user_agree" value="${user_agree}">
+    <input type="hidden" name="tempo" value="${tempo}">
+    <input type="hidden" name="dance" value="${dance}">
+    <input type="hidden" name="energy" value="${energy}">
+    <input type="hidden" name="acoustic" value="${acoustic}">
+    <input type="hidden" name="instrumental" value="${instrumental}">
+    <input type="hidden" name="liveness" value="${liveness}">
+    <input type="hidden" name="speech" value="${speech}">
+    <button class="submit-button" type="submit"> Confirm </button>
+    </form>
+    </div>
+`
+feedback.append(disagreeBox);
+}
 
 // Main function to handle the workflow
 var searchlist='null';
@@ -257,7 +319,7 @@ async function main() {
                 link.addEventListener('click', function(event) {
                     event.preventDefault();
                     console.log("Song chosen.");
-                    var song =link.href.split('?').pop();
+                    song =link.href.split('?').pop();
                     selectSong(token, song).then(data => {
                         if (data) {
                             state = songSelected(data); // Proceed only if data is successfully fetched
@@ -283,6 +345,10 @@ async function main() {
                 
                             showcaseState(track,state);
 
+                            // agree = document.getElementById('agree');
+                            // disagree = document.getElementById('disagree');
+                            // agree.addEventListener('click',agreeFunction());
+                            // disagree.addEventListener('click',disagreeFunction());
                         } else {
                             console.log("No data received or error occurred.");
                         }
