@@ -1,4 +1,5 @@
 var song;
+var user_agree;
 
 // Function to fetch the access token from the server
 async function fetchAccessToken() {
@@ -235,67 +236,91 @@ function songSelected(song){
 
 }
 
+async function getData(){
+    var url = 'http://127.0.0.1:8080';
+    response = await fetch(`${url}/read/${song.id}`,{
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        }});
+    const data = await response.json();
+    console.log(`got the data ${data}`);
+    return data; 
+}
+async function submitPost(){
+    const current_state = document.getElementsByClassName("highlighted-state")[0].innerText;
+    const artist = document.getElementById('artist').innerText;
+    const dance = document.getElementById('dance').innerText.split(': ').pop();
+    const song_name = document.getElementById('song_name').innerText.split(': ').pop();
+    const energy = document.getElementById('energy').innerText.split(': ').pop();
+    const acoustic = document.getElementById('acoustic').innerText.split(': ').pop();
+    const instrumental = document.getElementById('instrumental').innerText.split(': ').pop();
+    const liveness = document.getElementById('liveness').innerText.split(': ').pop();
+    const speech = document.getElementById('speech').innerText.split(': ').pop();
+    const new_state = current_state;
+    if (user_agree == false){
+        new_state = document.getElementById('new_state').value ;
+    }
+    var url = 'http://127.0.0.1:8080';
+    response = await fetch(`${url}/add`,{
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
 
+            "spotify_id": song.id,  // Replace with actual data
+            "song_name": song_name, // Replace with actual data
+            "artist": artist,
+            "current_state": current_state,
+            "user_agree": user_agree, // Replace with actual data or user input
+            "new_state": new_state,
+            "tempo": song.tempo,
+            "dance": dance,
+            "energy": energy,
+            "acoustic": acoustic,
+            "instrumental": instrumental,
+            "liveness": liveness,
+            "speech": speech 
+        })
+    });
+    
+}
 function agreeFunction(){
-const agreeBox = document.createElement('div');
-const feedback = document.getElementById('feedback');
-feedback.innerHTML='';
-agreeBox.innerHTML= `
-    <div class="agreebox">
-    <form action="scripts/sql.py/add" method="post">
-        <p> Thanks for the feedback! </p> 
-        </form>
-    </div>
-`;
-//post song data and agree to db 
-feedback.append(agreeBox);
+    const agreeBox = document.createElement('div');
+    const feedback = document.getElementById('feedback');
+    feedback.innerHTML='';
+    user_agree = true;
+    agreeBox.innerHTML= `
+        <div class="agreebox">
+            <p> Thanks for the feedback! </p> 
+        </div>
+    `;
+    submitPost();
+    //post song data and agree to db 
+    feedback.append(agreeBox);
 
 }
 function disagreeFunction(){
-const disagreeBox = document.createElement('div');
-const feedback = document.getElementById('feedback');
-feedback.innerHTML='';
-const current_state = document.getElementsByClassName("highlighted-state");
-const artist = document.getElementById('artist').value;
-const dance = document.getElementById('dance').value;
-const energy = document.getElementById('energy').value;
-const acoustic = document.getElementById('acoustic').value;
-const instrumental = document.getElementById('instrumental').value;
-const liveness = document.getElementById('liveness').value;
-const speech = document.getElementById('speech').value;
-const tempo = document.getElementById('tempo').value;
-const user_agree = false;
-disagreeBox.innerHTML = `
-    <div class="disagreebox"> 
-    <p> What type of running should this song be for? </p>
-    <form action="scripts/sql.py/add" method="post">
-
-    <select id="new_state" class="dis-dropdown">
-        <option id="warmup">Warmup </option>
-        <option id="recovery">Recovery/Base </option>
-        <option id="tempo">Tempo </option>
-        <option id="revival">Revival </option>
-        <option id="race">Race </option>
-        <option id="cooldown">Cooldown </option>
-    </select>
-
-    <input type="hidden" name="spotify_id" value="${song.url}">
-    <input type="hidden" name="song_name" value="${song.name}">
-    <input type="hidden" name="artist" value="${artist}">
-    <input type="hidden" name="current_state" value="${current_state}">
-    <input type="hidden" name="user_agree" value="${user_agree}">
-    <input type="hidden" name="tempo" value="${tempo}">
-    <input type="hidden" name="dance" value="${dance}">
-    <input type="hidden" name="energy" value="${energy}">
-    <input type="hidden" name="acoustic" value="${acoustic}">
-    <input type="hidden" name="instrumental" value="${instrumental}">
-    <input type="hidden" name="liveness" value="${liveness}">
-    <input type="hidden" name="speech" value="${speech}">
-    <button class="submit-button" type="submit"> Confirm </button>
-    </form>
-    </div>
-`
-feedback.append(disagreeBox);
+    const disagreeBox = document.createElement('div');
+    const feedback = document.getElementById('feedback');
+    feedback.innerHTML='';
+    user_agree = false;
+    disagreeBox.innerHTML = `
+        <div class="disagreebox"> 
+        <p> What type of running should this song be for? </p>
+        <select id="new_state" class="dis-dropdown">
+            <option id="warmup">Warmup </option>
+            <option id="recovery">Recovery/Base </option>
+            <option id="tempo">Tempo </option>
+            <option id="revival">Revival </option>
+            <option id="race">Race </option>
+            <option id="cooldown">Cooldown </option>
+        </select>
+        <button onclick="submitPost()" class="submit-button" type="submit"> Confirm </button>
+        </div>
+    `
+    feedback.append(disagreeBox);
 }
 
 // Main function to handle the workflow
@@ -329,7 +354,8 @@ async function main() {
                             const trackArtistsElement = link.getElementsByClassName("artist-name")[0];
                             const trackImgElement = link.getElementsByClassName("track-img")[0];
                             const trackSongLengthElement = link.getElementsByClassName("track-time")[0];
-                            
+                           
+                            song = data;
                             track.tempo =data.tempo;
                             track.danceability =data.danceability;
                             track.energy = data.energy;

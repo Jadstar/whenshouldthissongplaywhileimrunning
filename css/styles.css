@@ -72,6 +72,7 @@ form {
   }
   .search-box{
 	height: fit-content;
+	overflow: hidden;
 	position: relative;
 	margin:auto;
   }
