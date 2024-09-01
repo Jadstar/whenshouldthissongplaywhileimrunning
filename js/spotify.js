@@ -257,7 +257,7 @@ async function submitPost(){
     const instrumental = document.getElementById('instrumental').innerText.split(': ').pop();
     const liveness = document.getElementById('liveness').innerText.split(': ').pop();
     const speech = document.getElementById('speech').innerText.split(': ').pop();
-    const new_state = current_state;
+    var new_state = current_state;
     if (user_agree == false){
         new_state = document.getElementById('new_state').value ;
     }
