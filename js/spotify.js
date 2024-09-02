@@ -284,7 +284,6 @@ async function submitPost(){
             "speech": speech 
         })
     });
-    
 }
 function agreeFunction(){
     const agreeBox = document.createElement('div');
@@ -317,7 +316,7 @@ function disagreeFunction(){
             <option id="race">Race </option>
             <option id="cooldown">Cooldown </option>
         </select>
-        <button onclick="submitPost()" class="submit-button" type="submit"> Confirm </button>
+        <button onclick="agreeFunction()" class="submit-button" type="submit"> Confirm </button>
         </div>
     `
     feedback.append(disagreeBox);
