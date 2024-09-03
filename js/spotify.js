@@ -248,6 +248,15 @@ async function getData(){
     return data; 
 }
 async function submitPost(){
+   
+    const agreeBox = document.createElement('div');
+    const feedback = document.getElementById('feedback');
+    agreeBox.innerHTML= `
+        <div class="agreebox">
+            <p> Thanks for the feedback! </p> 
+        </div>
+    `;
+    //post song data and agree to db 
     const current_state = document.getElementsByClassName("highlighted-state")[0].innerText;
     const artist = document.getElementById('artist').innerText;
     const dance = document.getElementById('dance').innerText.split(': ').pop();
@@ -284,21 +293,12 @@ async function submitPost(){
             "speech": speech 
         })
     });
+    feedback.innerHTML='';
+    feedback.append(agreeBox);
 }
 function agreeFunction(){
-    const agreeBox = document.createElement('div');
-    const feedback = document.getElementById('feedback');
-    feedback.innerHTML='';
     user_agree = true;
-    agreeBox.innerHTML= `
-        <div class="agreebox">
-            <p> Thanks for the feedback! </p> 
-        </div>
-    `;
     submitPost();
-    //post song data and agree to db 
-    feedback.append(agreeBox);
-
 }
 function disagreeFunction(){
     const disagreeBox = document.createElement('div');
@@ -316,7 +316,7 @@ function disagreeFunction(){
             <option id="race">Race </option>
             <option id="cooldown">Cooldown </option>
         </select>
-        <button onclick="agreeFunction()" class="submit-button" type="submit"> Confirm </button>
+        <button onclick="submitPost()" class="submit-button" type="submit"> Confirm </button>
         </div>
     `
     feedback.append(disagreeBox);
