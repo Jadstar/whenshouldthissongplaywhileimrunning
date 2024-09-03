@@ -1,1 +1,1 @@
-i didn't like the template so i got rid of it and made the website from scratch
+I built a website to test my running data algorithm that categorises songs based on what type of run should happen 

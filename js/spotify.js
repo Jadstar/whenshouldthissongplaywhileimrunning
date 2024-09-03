@@ -237,7 +237,7 @@ function songSelected(song){
 }
 
 async function getData(){
-    var url = 'http://127.0.0.1:8080';
+    var url = 'https://sql-453730682128.asia-southeast1.run.app';
     response = await fetch(`${url}/read/${song.id}`,{
         method: "POST",
         headers: {
@@ -261,7 +261,7 @@ async function submitPost(){
     if (user_agree == false){
         new_state = document.getElementById('new_state').value ;
     }
-    var url = 'http://127.0.0.1:8080';
+    var url = 'https://sql-453730682128.asia-southeast1.run.app';
     response = await fetch(`${url}/add`,{
         method: "POST",
         headers: {
