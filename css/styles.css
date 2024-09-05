@@ -316,7 +316,7 @@ height: fit-content;
 }
 .analysis-img{
 	max-width: 50%;
-	height: fit-content;
+	height: auto;
 	flex-grow: 1;
 }
 .analysis-details{
