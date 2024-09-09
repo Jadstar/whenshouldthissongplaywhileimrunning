@@ -256,6 +256,8 @@ async function submitPost(){
             <p> Thanks for the feedback! </p> 
         </div>
     `;
+    feedback.innerHTML='';
+    feedback.append(agreeBox);
     //post song data and agree to db 
     const current_state = document.getElementsByClassName("highlighted-state")[0].innerText;
     const artist = document.getElementById('artist').innerText;
@@ -293,8 +295,6 @@ async function submitPost(){
             "speech": speech 
         })
     });
-    feedback.innerHTML='';
-    feedback.append(agreeBox);
 }
 function agreeFunction(){
     user_agree = true;
