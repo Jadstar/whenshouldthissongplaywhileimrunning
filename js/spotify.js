@@ -134,21 +134,21 @@ function songSelected(song){
         const songStates = {
         "RECOVER": {
             "state": "Recovery/Base Run",
-            "bpmRange": [0, 200], // BPM match cadence (high prio)
-            "dance": [0.50, 0.85],
-            "energy": [0.50, 0.85],
-            "acoustic": [0, 0.10],
-            "instrumental": [0, 0.40],
-            "liveness": [0, 0.20],
+            "bpmRange": [0, 150], // BPM match cadence (high prio)
+            "dance": [0.40, 0.85],
+            "energy": [0.35, 0.85],
+            "acoustic": [0, 1],
+            "instrumental": [0, 0.65],
+            "liveness": [0, 0.25],
             "speech": [0, 0.10],
             "desc": "A good recovery/base run song is a calmer, less intrusive song. Allowing you to relax and enjoy the scenery with some background music behind it."
         },
         "FALLOFF": {
             "state": "Revival",
             "bpmRange": [0, 200], // BPM equal avg cadence, or slightly higher than current cadence (High prio)
-            "happiness": [0.40, 0.90],
-            "dance": [0.48, 0.80],
-            "energy": [0.73, 1],
+            // "happiness": [0.40, 0.90],
+            "dance": [0.48, 0.85],
+            "energy": [0.63, 1],
             "acoustic": [0, 0.60],
             "instrumental": [0, 0.15],
             "liveness": [0.05, 0.30],
@@ -158,45 +158,45 @@ function songSelected(song){
         "COOLDOWN": {
             "state": "Cooldown Run",
             "bpmRange": [0, 200], // BPM lower than current cadence (low prio)
-            "dance": [0.45, 0.55],
-            "energy": [0.60, 0.80],
-            "acoustic": [0, 0.80],
-            "instrumental": [0, 0.20],
+            "dance": [0.30, 0.55],
+            "energy": [0, 0.80],
+            "acoustic": [0, 0.95],
+            "instrumental": [0, 1],
             "liveness": [0, 0.25],
-            "speech": [0, 0.50],
+            "speech": [0, 0.65],
             "desc": "Similar to a recovery run song, a cooldown song is best near the end or after a big run to truly emphasise what you've done. Well done"
 
         },
         "RACE": {
             "state": "Race Run",
-            "bpmRange": [100, 200], // BPM match ideal cadence ~175-180bpm (High prio)
-            "dance": [0.05, 0.80],
-            "energy": [0.82, 1.00],
-            "acoustic": [0, 0.10],
-            "instrumental": [0, 0.10],
+            "bpmRange": [100, 1000], // BPM match ideal cadence ~175-180bpm (High prio)
+            "dance": [0.25, 0.85],
+            "energy": [0.80, 1.00],
+            "acoustic": [0, 0.40],
+            "instrumental": [0, 0.15],
             "liveness": [0.05, 0.60],
             "speech": [0, 0.20],
             "desc": "A race song is the ultimate hypeman for your big race, or even for an all out sprint. Forget about zone 2, forget about ideal cadence, its time to run as fast as you possibly can."
         },
         "TEMPO": {
             "state": "Tempo Run",
-            "bpmRange": [0, 1000], // BPM match cadence (High prio)
-            "dance": [0.15, 0.80],
+            "bpmRange": [70, 1000], // BPM match cadence (High prio)
+            "dance": [0.05, 0.90],
             "energy": [0.60, 1],
-            "acoustic": [0, 1],
+            "acoustic": [0, 0.7],
             "instrumental": [0, 1],
-            "liveness": [0, 0.80],
-            "speech": [0, 0.28],
+            "liveness": [0, 0.90],
+            "speech": [0, 0.35],
             "desc": "Maintain your cadence, maintain your speed, that is what the tempo run songs are all about. High intensity, but comfortable, these songs are what will drive you to your next PB."
         },
         "WARMUP": {
             "state": "Warmup Run",
-            "bpmRange": [0, 200], // BPM match cadence (low prio)
-            "dance": [0.25, 0.85],
+            "bpmRange": [60, 200], // BPM match cadence (low prio)
+            "dance": [0.25, 0.90],
             "energy": [0.30, 1],
-            "acoustic": [0, 0.80],
+            "acoustic": [0, 0.95],
             "instrumental": [0, 0.50],
-            "liveness": [0, 0.90],
+            "liveness": [0, 0.70],
             "speech": [0, 0.60],
             "desc":"If you're just getting started, a warmup song is exactly what you need. A less intensive song that still will motivate you and push forward until you begin hitting your stride"
         }
