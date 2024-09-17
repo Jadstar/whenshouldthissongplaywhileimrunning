@@ -123,13 +123,10 @@ justify-content: center;
 box-shadow: 2px 2px 15px 5px #182244;
 min-height: 5vh;
 }
-a {
-/* font-family: 'Montserrat', sans-serif; */
-  font-family: 'Bebas Neue', sans-serif;
-}
 .top-banner a {
 color: #182244;
 padding: 10px 20px;
+font-family: 'Bebas Neue', sans-serif;
 display: flex;
 border-radius: 5px;
 text-decoration: none;
