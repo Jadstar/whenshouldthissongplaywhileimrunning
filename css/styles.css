@@ -148,7 +148,7 @@ align-items: center;
 }
 .footer-img {
 	max-width: 30px;
-	height: fit-content;
+	height:auto;
 }
 
 .top-banner a:hover {
