@@ -67,6 +67,15 @@ agree = document.getElementById('agree');
 disagree = document.getElementById('disagree');
 agree.addEventListener('click',agreeFunction());
 disagree.addEventListener('click',disagreeFunction());
+
+$(document).ready(function() {
+   $("#myCarousel").swiperight(function() {
+      $(this).carousel('prev');
+    });
+   $("#myCarousel").swipeleft(function() {
+      $(this).carousel('next');
+   });
+});
 }
 
 document.addEventListener('DOMContentLoaded', main);

@@ -47,15 +47,10 @@
 .res-vid {
   height: 100vh;
 }
-.overlay-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
+.info{
   text-align: center;
   color: #182244;
-  font-size: 24px;
-  background: #fffae5;
+  font-size: 20px;
 }
 
 /* CSS */
@@ -88,7 +83,7 @@
 form {
 	justify-content: center;
 }
-  h2 {
+  h2 ,h3{
 	
 	font-size: 48px;
 	font-family: 'Bebas Neue',  sans-serif;
@@ -114,6 +109,9 @@ form {
 	margin:auto;
   }
 
+	.watch-carousel {
+	display: none;
+	}
 
   section {
 	/* width: 100%; */
@@ -183,6 +181,24 @@ padding-top: 2%;
 color: #182244;
 min-height: 30vh;
 }
+.connectiq-logo {
+	justify-content: center;
+}
+.logo-small {
+	height: 15vh;
+	text-align: center;
+
+}
+.watch-app {
+	padding:1%;
+	max-height: 60vh;
+}
+.centre-img {
+	display: block;
+	justify-content: center;
+	max-height: 90vh;
+
+}
 .container {
 text-align: justify;
 padding: 5%;
@@ -213,13 +229,37 @@ color: #182244;
 color: #fffae5;
 background-color: #182244;
 }
-.vid-bg {
-color: #fffae5;
-background-color: #000000;
+
+.mobile-vid {
+  display: none;
+}
+
+/* Show desktop video only on larger screens */
+.desktop-vid {
+  display: block;
+  width: 100%; /* Adjust as needed */
 }
   /* Tablet view (width 768px and above) */
   @media (max-width: 768px) {
-
+	footer {
+		opacity:100% !important;
+	}
+		.desktop-vid {
+		display: none;
+	}
+	
+	/* Show mobile video on small screens */
+	.mobile-vid {
+		display: block;
+	}
+	.watch-carousel {
+		display: block;
+	}
+	
+	.swiper-slide img {
+		width: 100%;
+		height: auto;
+	}
 	.res-vid {
 		height: 100vh;
 	}
@@ -255,7 +295,7 @@ background-color: #000000;
 	  padding: 1%;
 	  min-height: 40vh;
 	}
-	h1,h2 {
+	h1,h2,h3{
 	  font-size: 24px;
 	}
 	  li {
@@ -283,6 +323,7 @@ background-color: #000000;
   
   /* Very small screens (width 320px and below) */
   @media (max-width: 320px) {
+
 	.footer-info {
 		white-space:normal;
 	}
@@ -292,7 +333,7 @@ background-color: #000000;
 	  min-height:40vh
 
 	}
-	h1,h2{
+	h1,h2, h3{
 		font-size: 20px;
 	}
 	li {
@@ -501,8 +542,11 @@ display: flex;
 	  right: 0;
 	  text-align: center;
 	  z-index: 999;
+	  opacity: 50%;
   }
-  
+ footer:hover {
+	opacity: 100%;
+ } 
   
   
   
