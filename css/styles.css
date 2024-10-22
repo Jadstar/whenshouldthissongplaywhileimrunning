@@ -234,6 +234,10 @@ background-color: #182244;
   display: none;
 }
 
+	.musicV{
+		display: inline;
+
+	}
 /* Show desktop video only on larger screens */
 .desktop-vid {
   display: block;
@@ -241,6 +245,10 @@ background-color: #182244;
 }
   /* Tablet view (width 768px and above) */
   @media (max-width: 768px) {
+	.musicV{
+		display: none;
+
+	}
 	footer {
 		opacity:100% !important;
 	}
