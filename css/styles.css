@@ -38,8 +38,26 @@
 .full{
 	grid-column: 1 / -1;
 }
-.half {
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.res-vid {
+  height: 100vh;
+}
+.overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #182244;
+  font-size: 24px;
+  background: #fffae5;
+}
+
 /* CSS */
 .submit-button {
   background-color: #182244;
@@ -195,8 +213,16 @@ color: #182244;
 color: #fffae5;
 background-color: #182244;
 }
+.vid-bg {
+color: #fffae5;
+background-color: #000000;
+}
   /* Tablet view (width 768px and above) */
   @media (max-width: 768px) {
+
+	.res-vid {
+		height: 100vh;
+	}
 	.main-title {
 	  font-size: 12px; /* Smaller font size for tablets */
 	  padding: 1%;
