@@ -184,6 +184,13 @@ min-height: 30vh;
 .connectiq-logo {
 	justify-content: center;
 }
+.yt-logo {
+	text-align: center;
+	justify-content: center;
+	max-width: 30%;
+	max-height: 15vh;
+
+}
 .logo-small {
 	height: 15vh;
 	text-align: center;
@@ -229,7 +236,21 @@ color: #182244;
 color: #fffae5;
 background-color: #182244;
 }
-
+.responsive-iframe-container {
+padding-top: 56.25%;
+overflow: hidden;
+position: relative;
+width: 100%;
+}
+.iframe-class{
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	height:100%;
+	width:100%;
+}
 .mobile-vid {
   display: none;
 }
