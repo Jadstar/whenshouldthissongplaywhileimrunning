@@ -26,8 +26,8 @@
   <meta property="og:url" content="https://jadstar.github.io/whenshouldthissongplaywhileimrunning/">
   <meta property="og:type" content="website">
   <meta name="google-adsense-account" content="ca-pub-8751439413408133">
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="icon" type="image/x-icon" href="images\favicon.ico">
+  <link rel="stylesheet" href="assets\css\styles.css" />
+  <link rel="icon" type="image/x-icon" href="assets\images\favicon.ico">
 
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@500&display=swap" rel="stylesheet"> 
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -35,53 +35,42 @@
 </head>
 <header>
         <nav>
+              <a href="">
+        <img  class="logo-header" src="assets\images\favioco.png" alt="Locomotive Showcase">
+                  </a>
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#media">Media</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/media">Media</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
         </nav>
 
 </header>
 <body>
-  <script src="js/spotify.js"></script>
-   <section class="about">
+   <div class="front-page">
                <div class="video-container">
       <video class="desktop-vid" autoplay muted loop>
-        <source src="videos/locomotive-horiz.mp4" type="video/mp4">
+        <source src="assets\videos\locomotive-horiz.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <video class="res-vid mobile-vid" autoplay muted loop>
-        <source src="videos/locomotive_demo.mp4" type="video/mp4">
+        <source src="assets\videos\locomotive-demo.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhwdLYrPPbpdQT2mzk7NGde0SHleTfaZM5UxANvwELoZr1vA/viewform?usp=sf_link" class="overlay-text">Apply For Early Access</a>
+
           </div>
-  </section>
-    <!-- <section id="banner" class="banner">
-    <div class="main-title">
-      <h1>Pick a song to run with</h1>
-      <div class="search-box">
-        <input type="text" id ="input-search" class="input-search" placeholder="search...">
-        <i class="fa fa-search"></i>
-      </div>
-      <div id ="dropdown" class="dropdown">
-      </div>
-      <div id = "analysis" class="analysis"></div>
-    </div>
-    <div class="main-img">
-      <img class="logoimg"  src="images\running_blue.png">
-    </div>
-  </section> -->
+        </div>
    <section class="why">
       <div class="container">
         <div class="info">
-        <img  class="logo-small" src="images\logo_500px.png" alt="Locomotive Showcase">
+        <img  class="logo-small" src="assets\images\logo_500px.png" alt="Locomotive Showcase">
         <h3>Available now on</h3>
         <a class="centre-img" href="https://apps.garmin.com/apps/23880277-1bc3-4d3e-8b71-39c487ae6631">
-          <img  src="images\connectIQ.svg" alt="Connect IQ">
+          <img  src="assets\images\connectIQ.svg" alt="Connect IQ">
           <div> 
-          <img  class="watch-app" src="images\runview.PNG" alt="Locomotive Showcase">
-          <img  class="watch-app" src="images\music view.PNG" alt="Locomotive Showcase">
+          <img  class="watch-app" src="assets\images\runview.PNG" alt="Locomotive Showcase">
+          <img  class="watch-app" src="assets\images\music view.PNG" alt="Locomotive Showcase">
           </div>
         </a>
         </div>
@@ -98,17 +87,6 @@
 </script>
   </section>
    <section class="why">
-      <div class="container">
-        <div class="info">
-        <a href="https://www.youtube.com/embed/6r3eoaktGW0?si=FlKeRV40-ODBXIsR">
-        <img  class="yt-logo" src="images\youtube_logo.png" alt="Youtube Logo">
-        </a>
-        <h3>Video out NOW!</h3>
-          <div class="responsive-iframe-container"> 
-          <iframe  class="iframe-class" src="https://www.youtube.com/embed/6r3eoaktGW0?si=FlKeRV40-ODBXIsR" title="I built an app that chooses music based on your run" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
 <!-- horiz -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -120,187 +98,22 @@
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
   </section>
-  <!-- <section class="about">
-     <div class="container">
-    <div class="grid-container">
-      <div class="item full"> 
-        <h2>Warmup</h2>
-        <div class="state-info">
-          <p>Music for early in an Activity</p>
-          <div class="attributes">
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Speed</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:40%"></div>
-                </div>
-              </div> 
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Heart Rate</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:30%"></div>
-                  </div>
-              </div> 
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Cadence</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:40%"></div>
-                  </div>
-              </div> 
-          </div>
-        </div>
-      </div>
-      
-      <div class="item"> 
-        <h2>Base Run</h2>
-        <div class="state-info">
-          <p> Music for a Zone 2 Run</p>
-          <div class="attributes">
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Speed</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:60%"></div>
-                </div>
-              </div> 
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Heart Rate</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width: 50%"></div>
-                  </div>
-              </div> 
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Cadence</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:65%"></div>
-                  </div>
-              </div> 
-          </div>
-        </div>
-      </div>
-
-      <div class="item"> 
-        <h2>Tempo</h2>
-        <div class="state-info">
-          <p> Music for a faster run</p>
-          <div class="attributes">
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Speed</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:75%"></div>
-                </div>
-              </div> 
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Heart Rate</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:75%"></div>
-                  </div>
-              </div> 
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Cadence</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:80%"></div>
-                  </div>
-              </div> 
-          </div>
-        </div>
-      </div>
-
-      <div class="item full">
-        <h2>Revival</h2>
-        <div class="state-info">
-          <p>Music once you've hit the wall</p>
-          <div class="attributes">
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Speed</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:60%"></div>
-                </div>
-              </div> 
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Heart Rate</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:90%"></div>
-                  </div>
-              </div> 
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Cadence</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:40%"></div>
-                  </div>
-              </div> 
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h2>Race</h2>
-        <div class="state-info">
-          <p>Music to lock in</p>
-          <div class="attributes">
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Speed</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:90%"></div>
-                </div>
-              </div> 
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Heart Rate</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:90%"></div>
-                  </div>
-              </div> 
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Cadence</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:90%"></div>
-                  </div>
-              </div> 
-          </div>
-        </div>
-      </div>
-
-      <div class="item">
-        <h2>Cooldown</h2>
-        <div class="state-info">
-          <p>Post-Workout Music</p>
-          <div class="attributes">
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Speed</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:40%"></div>
-                </div>
-              </div> 
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Heart Rate</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:60%"></div>
-                  </div>
-              </div> 
-              <div class="audio-progress-wrapper">
-                  <h4 id="tempo" class="audio-feature-name">Cadence</h4>
-                  <div class="w3-progress-container w3-round-xlarge">
-                      <div class="w3-progressbar w3-round-xlarge" style="width:20%"></div>
-                  </div>
-              </div> 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </section> -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8751439413408133"
      crossorigin="anonymous"></script>
   <footer>
  <div>
-    <h2> Accepting Early Access  Applications</h1>
-  </div> 
+  
   <div class="top-banner">
-    <div class="footer-info">
-      <img class="footer-img" src="images\watch-100px.png">
-      <p class="inner-footer"> Own a Garmin Watch?</p>
-      <img class="footer-img" src="images\spotify_logo.png">
-      <p class="inner-footer">Have Spotify Premium?</p>
-    </div>
-      <a href="https://forms.gle/vzRu6X2BTSNtudhu7" target="_blank">Apply</a>
+  <!-- horiz -->
+  <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-8751439413408133"
+      data-ad-slot="8049675202"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
   </div>
   </footer>
 </body>
