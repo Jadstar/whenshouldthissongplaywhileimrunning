@@ -1,7 +1,175 @@
 *{
 	box-sizing: border-box;
   }
-  
+
+  /* Global Styles */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fffae5;
+  color: #182244;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bebas Neue', sans-serif;
+  color: #182244;
+}
+
+/* Links */
+a {
+  color: #ffb87d;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Header */
+header {
+  background-color: #182244;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+header a {
+  color: white;
+}
+
+header ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+header ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+/* Main Container */
+main {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+img.main-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+/* Section Styling */
+section {
+  margin-bottom: 50px;
+}
+
+section h2 {
+  margin-bottom: 15px;
+  font-size: 2rem;
+}
+
+/* Form Styling (Contact Page) */
+form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+form label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  background-color: #ffb87d;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+form button:hover {
+  background-color: #ff9a56;
+}
+.nothome {
+	position:relative;
+	background-color: rgba(24, 34, 68, 1); /* Semi-transparent background */
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+	background-color: rgba(24, 34, 68, 0.4); /* Semi-transparent background */
+
+    padding: 10px 20px;
+    z-index: 1000;
+
+} 
+.media-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  padding-top:5%;
+}
+.gallery-item {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: right; /* Center the nav links */
+    flex: 1; /* Make nav links take up remaining space */
+    font-family: 'Montserrat', sans-serif;
+
+}
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between logo and nav text */
+    width: 100%;
+    padding: 0px 2%;
+}
+
+nav ul li {
+    margin-right: 5%;
+}
+
+nav ul li a {
+    text-decoration: none;
+	opacity: 100%;
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffb87d;
+}
   body, html{
 	margin: 0px;
 	scroll-snap-type: y mandatory;
@@ -10,6 +178,7 @@
 	height: 100vh;
 	justify-content: justify;
 	align-items: center;
+
 	font-family: 'Montserrat', sans-serif;
 	overflow-x:hidden;
 	overflow-y: scroll;
@@ -42,6 +211,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+    position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+
 }
 
 .res-vid {
@@ -117,8 +290,33 @@ form {
 	/* width: 100%; */
 	min-height: 100vh;
 	display: block !important;
-	scroll-snap-align: start;
+	/* scroll-snap-align: start; */
   }
+  .front-page {
+	height: fit-content;
+  }
+  .overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 3rem; /* Adjust font size */
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+	background: rgba(24, 34, 68, 0.4); /* Semi-transparent background */
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none; /* Removes underline from link */
+  z-index: 1; /* Ensures it's above the video */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.overlay-text:hover {
+  color: #ffb87d; /* Add hover effect for the text */
+}
+
   ::placeholder{
    
 	color: #ffb87d;
@@ -136,7 +334,6 @@ font-size: 24px;
 font-weight: bold;
 display: flex;
 justify-content: center;
-box-shadow: 2px 2px 15px 5px #182244;
 min-height: 5vh;
 }
 .top-banner a {
@@ -184,12 +381,10 @@ min-height: 30vh;
 .connectiq-logo {
 	justify-content: center;
 }
-.yt-logo {
-	text-align: center;
-	justify-content: center;
-	max-width: 30%;
-	max-height: 15vh;
-
+.logo-header{
+    max-height: 50px; /* Adjust logo size */
+	padding-right: 20px;
+	
 }
 .logo-small {
 	height: 15vh;
@@ -236,40 +431,19 @@ color: #182244;
 color: #fffae5;
 background-color: #182244;
 }
-.responsive-iframe-container {
-padding-top: 56.25%;
-overflow: hidden;
-position: relative;
-width: 100%;
-}
-.iframe-class{
-	position:absolute;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	height:100%;
-	width:100%;
-}
+
 .mobile-vid {
   display: none;
 }
 
-	.musicV{
-		display: inline;
-
-	}
 /* Show desktop video only on larger screens */
 .desktop-vid {
   display: block;
   width: 100%; /* Adjust as needed */
 }
-  /* Tablet view (width 768px and above) */
+  /* Tabfront-page
+    view (width 768px and above) */
   @media (max-width: 768px) {
-	.musicV{
-		display: none;
-
-	}
 	footer {
 		opacity:100% !important;
 	}
@@ -571,11 +745,7 @@ display: flex;
 	  right: 0;
 	  text-align: center;
 	  z-index: 999;
-	  opacity: 50%;
   }
- footer:hover {
-	opacity: 100%;
- } 
   
   
   
