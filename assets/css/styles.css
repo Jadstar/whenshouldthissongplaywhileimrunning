@@ -501,6 +501,14 @@ background-color: #182244;
 	h1,h2,h3{
 	  font-size: 24px;
 	}
+	nav  ul li a {
+		font-size: 12px;
+		padding: 0px 15px;
+		margin-right: 0;
+	}
+	header ul li {
+		margin: 0;
+	}
 	  li {
 	  font-size: 16px;
 	}
